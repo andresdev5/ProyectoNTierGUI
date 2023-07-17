@@ -1,0 +1,36 @@
+﻿<Page x:Class="ProyectoNTierGUI.Page.Payroll.Employee.EmployeeRemovePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoNTierGUI.Page.Payroll.Employee"
+      xmlns:viewModel="clr-namespace:ProyectoNTierGUI.ViewModel.Employee"
+      xmlns:converter="clr-namespace:ProyectoNTierGUI.Converter"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
+      Title="EmployeeRemovePage" MinHeight="533" MinWidth="661">
+    <Page.Resources>
+        <converter:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+    </Page.Resources>
+    <Page.DataContext>
+        <viewModel:EmployeeRemoveViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Label Content="Eliminar empleado" FontWeight="Bold" FontSize="15" HorizontalAlignment="Left" Margin="0,0,0,20" VerticalAlignment="Top"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Id" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <ComboBox Name="IdComboBox" ItemsSource="{Binding Ids}" HorizontalAlignment="Left" Width="390" Height="30" VerticalContentAlignment="Center" />
+            </StackPanel>
+            <Button HorizontalAlignment="Left" Content="Guardar" Width="100" Height="30" Click="Submit" />
+            <TextBlock 
+                Visibility="{Binding FormMessage, Converter={StaticResource NullVisibilityConverter}}" 
+                d:Visibility="Visible"
+                d:Text="[message]"
+                Text="{Binding FormMessage}" 
+                TextWrapping="Wrap" 
+                Margin="0, 30" Padding="15" Background="#FFE4F6FB" Foreground="#FF385C8C"/>
+        </StackPanel>
+    </Grid>
+</Page>

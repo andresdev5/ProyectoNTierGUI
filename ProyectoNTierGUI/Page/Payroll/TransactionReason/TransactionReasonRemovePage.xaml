@@ -1,0 +1,37 @@
+﻿<Page x:Class="ProyectoNTierGUI.Page.Payroll.TransactionReason.TransactionReasonRemovePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoNTierGUI.Page.Payroll.TransactionReason"
+      xmlns:viewModel = "clr-namespace:ProyectoNTierGUI.ViewModel.Payroll"
+      xmlns:converter="clr-namespace:ProyectoNTierGUI.Converter"
+      mc:Ignorable="d"
+      Background="White"
+      MinHeight="533" MinWidth="661"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TransactionReasonRemovePage">
+    <Page.Resources>
+        <converter:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+    </Page.Resources>
+    <Page.DataContext>
+        <viewModel:TransactionReasonRemoveViewModel />
+    </Page.DataContext>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Label Content="Eliminar Motivo Egreso o Ingreso" FontWeight="Bold" FontSize="15" HorizontalAlignment="Left" Margin="0,0,0,20" VerticalAlignment="Top"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Código" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <ComboBox Name="CodeComboBox" d:ItemsSource="{Binding Codes}" ItemsSource="{Binding Codes}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="390" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <Button HorizontalAlignment="Left" Content="Eliminar" Width="100" Height="30" Click="Submit" />
+            <TextBlock 
+                Visibility="{Binding FormMessage, Converter={StaticResource NullVisibilityConverter}}" 
+                d:Visibility="Visible"
+                d:Text="[message]"
+                Text="{Binding FormMessage}" 
+                TextWrapping="Wrap" 
+                Margin="0, 30" Padding="15" Background="#FFE4F6FB" Foreground="#FF385C8C"/>
+        </StackPanel>
+    </Grid>
+</Page>

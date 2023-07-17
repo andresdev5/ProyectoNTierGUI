@@ -1,0 +1,71 @@
+﻿<Page x:Class="ProyectoNTierGUI.Page.Payroll.Payroll.PayrollAddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoNTierGUI.Page.Payroll.Payroll"
+      xmlns:viewmodel="clr-namespace:ProyectoNTierGUI.ViewModel.Payroll"
+      xmlns:converter="clr-namespace:ProyectoNTierGUI.Converter"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" d:Background="white"
+      Title="PayrollAddPage" MinHeight="533" MinWidth="661">
+    <Page.DataContext>
+        <viewmodel:PayrollAddViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <converter:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Empleado" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <ComboBox SelectionChanged="OnEmployeeComboBoxChanged" Name="EmployeeComboBox" ItemsSource="{Binding Employees}" DisplayMemberPath="IdCard" HorizontalAlignment="Left" VerticalAlignment="Top" Width="390" Height="30" VerticalContentAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Fecha" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <DatePicker  Text="{Binding FormAccountingEntry.CreatedAt}" HorizontalAlignment="Left" Width="390" Height="30" VerticalContentAlignment="Center" />
+            </StackPanel>
+            <Label Content="Detalle" FontWeight="Bold" FontSize="15" HorizontalAlignment="Left" Margin="0,0,0,20" VerticalAlignment="Top"/>
+
+            <Grid Margin="0,0,0,20" Visibility="{Binding SelectedEmployee, Converter={StaticResource NullVisibilityConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Codigo" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <Label Content="Nombre" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <Label Content="Fecha ingreso" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <Label Content="Salario" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+
+                <TextBlock Text="{Binding SelectedEmployee.Id}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,5,5,5"/>
+                <TextBlock Text="{Binding SelectedEmployee.FullName}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,5,5,5"/>
+                <TextBlock Text="{Binding SelectedEmployee.HireDate}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,5,5,5"/>
+                <TextBlock Text="{Binding SelectedEmployee.Salary}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0,5,5,5"/>
+            </Grid>
+
+            <DataGrid VerticalScrollBarVisibility="Auto" MaxHeight="300" ItemsSource="{Binding Path=TransactionReasonsEmployee}" Margin="0" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Codigo" Binding="{Binding Code}" Width="100"/>
+                    <DataGridTextColumn Header="Tipo" Binding="{Binding Type}" Width="120" />
+                    <DataGridTextColumn Header="Cantidad" Binding="{Binding Amount}" Width="120"/>
+                    <DataGridTextColumn Header="Motivo" Binding="{Binding Reason}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button HorizontalAlignment="Right" Margin="0,20,0,0" Content="Generar Asiento" Width="100" Height="30" Click="Submit" />
+            <TextBlock 
+                Visibility="{Binding FormMessage, Converter={StaticResource NullVisibilityConverter}}" 
+                d:Visibility="Visible"
+                d:Text="[message]"
+                Text="{Binding FormMessage}" 
+                TextWrapping="Wrap" 
+                Margin="0, 30" Padding="15" Background="#FFE4F6FB" Foreground="#FF385C8C"/>
+        </StackPanel>
+    </Grid>
+</Page>

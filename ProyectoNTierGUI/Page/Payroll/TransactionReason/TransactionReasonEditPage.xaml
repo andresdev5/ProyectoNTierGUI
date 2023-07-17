@@ -1,0 +1,62 @@
+﻿<Page x:Class="ProyectoNTierGUI.Page.Payroll.TransactionReason.TransactionReasonEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:behaviors="clr-namespace:ProyectoNTierGUI.Behaviors"
+      xmlns:local="clr-namespace:ProyectoNTierGUI.Page.Payroll.TransactionReason"
+      xmlns:viewModel = "clr-namespace:ProyectoNTierGUI.ViewModel.Payroll"
+      xmlns:converter="clr-namespace:ProyectoNTierGUI.Converter"
+      mc:Ignorable="d" d:DesignWidth="800"
+      MinHeight="533" MinWidth="661"
+      Background="White"
+      Title="TransactionReasonEditPage" Height="678">
+    <Page.Resources>
+        <converter:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+    </Page.Resources>
+    <Page.DataContext>
+        <viewModel:TransactionReasonEditViewModel />
+    </Page.DataContext>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Label Content="Actualizar Motivo Egreso o Ingreso" FontWeight="Bold" FontSize="15" HorizontalAlignment="Left" Margin="0,0,0,20" VerticalAlignment="Top"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Código" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <ComboBox SelectionChanged="OnCodeComboBoxChanged" Name="CodeComboBox" d:ItemsSource="{Binding Codes}" ItemsSource="{Binding Codes}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="390" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Empleado" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <ComboBox Name="EmployeeComboBox" ItemsSource="{Binding Employees}" DisplayMemberPath="IdCard" HorizontalAlignment="Left" VerticalAlignment="Top" Width="390" Height="30" VerticalContentAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Tipo" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <ComboBox Name="TypeComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="390" Height="30" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="INGRESO" IsSelected="True"  />
+                    <ComboBoxItem Content="EGRESO" />
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Motivo" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <TextBox Name="ReasonTextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390" Height="97" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <Label Content="Cantidad" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Padding="0,5,5,5"/>
+                <TextBox Name="AmountText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding FormAmountValue}" 
+                         VerticalAlignment="Top" Width="390" Height="30">
+                    <i:Interaction.Behaviors>
+                        <behaviors:TextBoxNumberBehavior InputMode="DecimalInput"/>
+                    </i:Interaction.Behaviors>
+                </TextBox>
+            </StackPanel>
+            <Button HorizontalAlignment="Left" Content="Guardar" Width="100" Height="30" Click="Submit" />
+            <TextBlock 
+                Visibility="{Binding FormMessage, Converter={StaticResource NullVisibilityConverter}}" 
+                d:Visibility="Visible"
+                d:Text="[message]"
+                Text="{Binding FormMessage}" 
+                TextWrapping="Wrap" 
+                Margin="0, 30" Padding="15" Background="#FFE4F6FB" Foreground="#FF385C8C"/>
+        </StackPanel>
+    </Grid>
+</Page>

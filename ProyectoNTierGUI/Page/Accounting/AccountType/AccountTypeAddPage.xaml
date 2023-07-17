@@ -1,0 +1,37 @@
+﻿<Page x:Class="ProyectoNTierGUI.Page.Accounting.AccountType.AccountTypeAddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoNTierGUI.Page.Accounting.AccountType"
+      xmlns:viewModel="clr-namespace:ProyectoNTierGUI.ViewModel.Accounting.AccountType"
+      xmlns:converter="clr-namespace:ProyectoNTierGUI.Converter"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
+      Title="AccountTypeAddPage"  MinHeight="533" MinWidth="661">
+    <Page.Resources>
+        <converter:NullVisibilityConverter x:Key="NullVisibilityConverter"/>
+    </Page.Resources>
+    <Page.DataContext>
+        <viewModel:AccountTypeViewModel/>
+    </Page.DataContext>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <Label Content="Nombre:" />
+                <TextBox Name="NameTextBox" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="30" />
+                <Button Margin="0,10,0,0" Content="Guardar" Click="Submit"  Height="30" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                <Label Content="Tipos de cuenta:" />
+                <DataGrid ItemsSource="{Binding Path=AccountTypes}" Margin="10" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" Width="200"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

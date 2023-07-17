@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Accounting\AccountType\AccountTypeAddPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\Employee\EmployeAddPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\Employee\EmployeeEditPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\Employee\EmployeeListPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\Employee\EmployeeRemovePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\Payroll\PayrollAddPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\Payroll\PayrollReportPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\TransactionReason\TransactionReasonAddPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\TransactionReason\TransactionReasonEditPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\TransactionReason\TransactionReasonListPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Page\Payroll\TransactionReason\TransactionReasonRemovePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Accounting\AccountType\AccountTypeAddPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\Employee\EmployeAddPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\Employee\EmployeeEditPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\Employee\EmployeeListPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\Employee\EmployeeRemovePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\Payroll\PayrollAddPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\Payroll\PayrollReportPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\TransactionReason\TransactionReasonAddPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\TransactionReason\TransactionReasonEditPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\TransactionReason\TransactionReasonListPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Payroll\TransactionReason\TransactionReasonRemovePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
