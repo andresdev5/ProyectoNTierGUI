@@ -93,46 +93,24 @@
                 <!-- menu contabilidad -->
                 <StackPanel Grid.Row="1" Orientation="Vertical">
                     <Label Content="Contabilidad" FontWeight="Bold" FontSize="15" />
-                    <Expander Margin="20,3,20,3" HorizontalAlignment="Left" Header="Tipo de cuentas" VerticalAlignment="Top">
-                        <ListView Background="Transparent" BorderThickness="0" SelectionChanged="SidebarOnSelectedItem">
-                            <ListViewItem Margin="20,3,20,3" Name="AccountType_Add">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Agregar"  FontSize="14"/>
-                                </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem Margin="20,3,20,3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Eliminar"  FontSize="14"/>
-                                </StackPanel>
-                            </ListViewItem>
-                        </ListView>
-                    </Expander>
-                    <Expander Margin="20,3,20,3" HorizontalAlignment="Left" Header="Cuentas" VerticalAlignment="Top">
-                        <ListView Background="Transparent" BorderThickness="0" SelectionChanged="SidebarOnSelectedItem">
-                            <ListViewItem Margin="20,3,20,3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Agregar"  FontSize="14"/>
-                                </StackPanel>
-                            </ListViewItem>
-                            <ListViewItem Margin="20,3,20,3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Eliminar"  FontSize="14"/>
-                                </StackPanel>
-                            </ListViewItem>
-                        </ListView>
-                    </Expander>
-                    <Expander Margin="20,3,20,3" HorizontalAlignment="Left" Header="Contabilidad" VerticalAlignment="Top">
-                        <ListView Background="Transparent" BorderThickness="0" SelectionChanged="SidebarOnSelectedItem">
-                            <ListViewItem Margin="20,3,20,3">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Agregar"  FontSize="14"/>
-                                </StackPanel>
-                            </ListViewItem>
-                        </ListView>
-                    </Expander>
-                    <ListView BorderBrush="Transparent" SelectionChanged="SidebarOnSelectedItem">
-                        <ListViewItem Margin="20,3,20,3">
+                    <ListView Background="Transparent" BorderThickness="0" SelectionChanged="SidebarOnSelectedItem">
+                        <ListViewItem Margin="20,3,20,3" Name="Accounting_AccountTypes">
                             <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Tipos de cuenta"  FontSize="14"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Margin="20,3,20,3" Name="Accounting_Accounts">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cuentas"  FontSize="14"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Margin="20,3,20,3" Name="Accounting">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Contabilidad"  FontSize="14"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Margin="20,3,20,3">
+                            <StackPanel Orientation="Horizontal" Name="Accounting_Report">
                                 <TextBlock Text="Reporte"  FontSize="15"/>
                             </StackPanel>
                         </ListViewItem>

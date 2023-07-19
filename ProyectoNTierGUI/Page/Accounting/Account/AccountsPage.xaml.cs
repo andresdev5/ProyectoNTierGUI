@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ProyectoNTierGUI.ViewModel.Accounting;
 
-namespace ProyectoNTierGUI.Page.Accounting.AccountType
+namespace ProyectoNTierGUI.Page.Accounting.Account
 {
     /// <summary>
-    /// Lógica de interacción para AccountTypeAddPage.xaml
+    /// Lógica de interacción para AccountsPage.xaml
     /// </summary>
-    public partial class AccountTypeAddPage : System.Windows.Controls.Page
+    public partial class AccountsPage : System.Windows.Controls.Page
     {
-        public AccountTypeAddPage()
+        public AccountsPage()
         {
             InitializeComponent();
-        }
-
-        public void Submit(object sender, RoutedEventArgs e)
-        {
-            var name = NameTextBox.Text;
-            var vm = (AccountTypeViewModel)DataContext;
-            vm.AddType(name);
         }
     }
 }

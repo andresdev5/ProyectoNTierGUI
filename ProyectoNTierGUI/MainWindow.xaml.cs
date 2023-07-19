@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProyectoNTierGUI.Page.Accounting.AccountType;
 using ProyectoNTierGUI.Page.Payroll.Payroll;
+using ProyectoNTierGUI.Page.Accounting.Account;
 
 namespace ProyectoNTierGUI
 {
@@ -85,8 +86,11 @@ namespace ProyectoNTierGUI
                 case "Employee_List":
                     NavigationFrame.Navigate(new EmployeeListPage());
                     break;
-                case "AccountType_Add":
+                case "Accounting_AccountTypes":
                     NavigationFrame.Navigate(new AccountTypeAddPage());
+                    break;
+                case "Accounting_Accounts":
+                    NavigationFrame.Navigate(new AccountsPage());
                     break;
                 case "Payroll_Add":
                     NavigationFrame.Navigate(new PayrollAddPage());

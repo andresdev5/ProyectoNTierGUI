@@ -13,6 +13,9 @@
     <Compile Update="Page\Accounting\AccountType\AccountTypeAddPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Page\Accounting\Account\AccountsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Page\Payroll\Employee\EmployeAddPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +55,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Page\Accounting\AccountType\AccountTypeAddPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Page\Accounting\Account\AccountsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Page\Payroll\Employee\EmployeAddPage.xaml">

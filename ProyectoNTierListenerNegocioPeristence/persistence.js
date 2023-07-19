@@ -212,5 +212,140 @@ async function handleNegocioMessage(message) {
                 body: rows.affectedRows
             });
         } break;
+        case 'AccountType::list': {
+            const [rows, fields] = await db.execute('SELECT * FROM account_types');
+            let results = rows.map(row => ({
+                id: row.id,
+                name: row.name,
+                createdAt: row.created_at
+            }));
+
+            results = results.map(row => {
+                const date = new Date(row.createdAt);
+
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+
+                row.createdAt = `${year}/${month}/${day}`;
+                return row;
+            });
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'AccountType::listed',
+                entity: 'AccountType',
+                body: results.map(row => `${row.id};${row.name};${row.createdAt}`).join('\n')
+            });
+        } break;
+        case 'AccountType::create': {
+            const [name] = message.body.split(';');
+            const [rows, fields] = await db.execute('INSERT INTO account_types (name) VALUES (?)', [name]);
+            const id = rows.insertId;
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'AccountType::created',
+                entity: 'AccountType',
+                body: id
+            });
+        } break;
+        case 'AccountType::update': {
+            const [id, name] = message.body.split(';');
+            const [rows, fields] = await db.execute('UPDATE account_types SET name = ? WHERE id = ?', [name, id]);
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'AccountType::updated',
+                entity: 'AccountType',
+                body: rows.affectedRows
+            });
+        } break;
+        case 'AccountType::delete': {
+            const [id] = message.body.split(';');
+            const [rows, fields] = await db.execute('DELETE FROM account_types WHERE id = ?', [id]);
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'AccountType::deleted',
+                entity: 'AccountType',
+                body: rows.affectedRows
+            });
+        } break;
+        case 'Account::list': {
+            const [rows, fields] = await db.execute(`
+                SELECT a.id, a.name, a.created_date, t.id as account_type_id, t.name as account_type_name
+                FROM accounts as a
+                INNER JOIN account_types as t ON a.account_type_id = t.id
+            `);
+
+            let results = rows.map(row => ({
+                id: row.id,
+                name: row.name,
+                createdDate: row.created_date,
+                accountTypeId: row.account_type_id,
+                accountTypeName: row.account_type_name
+            }));
+
+            results = results.map(row => {
+                const date = new Date(row.createdDate);
+
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+
+                row.createdDate = `${year}/${month}/${day}`;
+                return row;
+            });
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'Account::listed',
+                entity: 'Account',
+                body: results.map(row => `${row.id};${row.name};${row.createdDate};${row.accountTypeId};${row.accountTypeName}`).join('\n')
+            });
+        } break;
+        case 'Account::create': {
+            const [name, accountTypeId] = message.body.split(';');
+            const [rows, fields] = await db.execute('INSERT INTO accounts (name, account_type_id) VALUES (?, ?)', [name, accountTypeId]);
+            const id = rows.insertId;
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'Account::created',
+                entity: 'Account',
+                body: id
+            });
+        } break;
+        case 'Account::update': {
+            const [id, name, accountTypeId] = message.body.split(';');
+            const [rows, fields] = await db.execute('UPDATE accounts SET name = ?, account_type_id = ? WHERE id = ?', [name, accountTypeId, id]);
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'Account::updated',
+                entity: 'Account',
+                body: rows.affectedRows
+            });
+        } break;
+        case 'Account::delete': {
+            const [id] = message.body.split(';');
+            const [rows, fields] = await db.execute('DELETE FROM accounts WHERE id = ?', [id]);
+
+            client.emit('persistence::message', {
+                source: 'PERSISTENCE',
+                method: 'OUTPUT',
+                action: 'Account::deleted',
+                entity: 'Account',
+                body: rows.affectedRows
+            });
+        } break;
     }
 }

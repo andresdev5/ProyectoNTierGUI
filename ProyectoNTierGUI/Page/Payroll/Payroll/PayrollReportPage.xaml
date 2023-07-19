@@ -27,12 +27,13 @@
                     <DatePicker SelectedDateChanged="OnDateChanged" SelectedDate="{Binding Path=EndDate}" Margin="10"/>
                 </StackPanel>
             </StackPanel>
-            <DataGrid ItemsSource="{Binding Path=EmployeeReportItems}" Margin="10" AutoGenerateColumns="False">
+            <DataGrid SelectionMode="Single" Name="ReportGrid" ItemsSource="{Binding Path=EmployeeReportItems}" Margin="10" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Empleado" Binding="{Binding Employee.FullName}" Width="100"/>
                     <DataGridTextColumn Header="Cantidad" Binding="{Binding Total}" Width="120" />
                 </DataGrid.Columns>
             </DataGrid>
+            <Button Click="DataGridPrinting" Width="100" Margin="10" Height="25" HorizontalAlignment="Right" Content="IMPRIMIR"/>
         </StackPanel>
     </Grid>
 </Page>
